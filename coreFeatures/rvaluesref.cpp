@@ -17,8 +17,9 @@ void lvalue_reference_demo() {
 	//int& ref2=10; //within lvalue reference, i cant refer to rvalue.
 	const int& ref3 = 10;
 }
-void set_to_99(int& change_me) {
+int set_to_99(int& change_me) {
 	change_me = 99;
+	return change_me;
 }
 
 void rvalue_reference_demo() {
@@ -26,11 +27,13 @@ void rvalue_reference_demo() {
 	std::string s2 = "hussain";
 	std::string s3 = s1 + s2; //rhs will frst get evaluated which is overhead, so instead.
 	std::string&& s4 = s1 + s2; //no evaluation
+	int&& s5 = 5+5; 
 }
 
 int main() {
 	int i = 10;
-	set_to_99(i);
+	std::cout << set_to_99(i) << "\n";
+	
 //	set_to_99(10); //error
 	return 0;
 }
