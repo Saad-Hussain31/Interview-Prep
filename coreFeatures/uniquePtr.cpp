@@ -38,6 +38,24 @@ public:
 	~UDT() { std::cout << "UDT destroyed \n"; }
 };
 
+
+//custom smart pointer.
+class MyInt {
+public:
+	MyInt(int* p) {
+		data = p;
+	}
+	~MyInt() { 
+		delete data;
+	}
+	int& operator * () { 
+		return *data;
+	}
+private:
+	int* data;
+};
+
+
 int main() {
 //	raw_pointer();
 //	raw_pointer2();
@@ -45,6 +63,12 @@ int main() {
 //	std::unique_ptr<UDT> obj2;
 //	std::unique_ptr<UDT> obj3 = std::unique_ptr<UDT>(new UDT);
 //	std::unique_ptr<UDT[]> obj4 = std::unique_ptr<UDT[]>(new UDT[10]); //initalizing array
-	std::unique_ptr<UDT[]> obj5 = std::make_unique<UDT[]>(10); //easy alternative syntax
+	std::unique_ptr<UDT[]> obj5 = std::make_unique<UDT[]>(2); //easy alternative syntax
+	
+	int* p = new int(10); //initialized with value 10
+	std::cout << p << "\n";// --> addres
+	std::cout << *p << "\n"; // --> 10
+	MyInt myint = MyInt(p);
+	std::cout << *myint << std::endl; //* is overloaded/
 	return 0;
 }
