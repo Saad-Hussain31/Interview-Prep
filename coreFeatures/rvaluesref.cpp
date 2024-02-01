@@ -1,7 +1,11 @@
 /*
 lvalueL: something with a memory location. IOW anything I can take address of(&) eg: &(i) 
 rvalue: on the RHS of assignment.  Doesnt point anywhere means I cant take address of
+the main usage of r and lvals is to do with the optimization. if we know that an obj is temp obj than we can 'steal' iow use its resources to use somewhere else
+which we could not do with consts 
 
+std::string foo(const std::string& str); cant steal coz could be used other places
+std::string bar(std::string&& str); can steal str's resources coz its temp obj
 */
 
 
@@ -35,7 +39,7 @@ void rvalue_reference_demo() {
 	std::string s2 = "hussain";
 	std::string s3 = s1 + s2; //rhs will frst get evaluated which is overhead, so instead.
 	std::string&& s4 = s1 + s2; //no evaluation
-	
+
 	int&& s5 = 5+5; 
 }
 
