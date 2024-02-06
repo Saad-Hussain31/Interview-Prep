@@ -13,6 +13,8 @@ add_executable(test coreFeatures/test.cpp)
 
 add_executable(copies coreFeatures/copies.cpp)
 
+add_executable(avoiding_copies coreFeatures/avoiding_copies.cpp)
+
 add_executable(singleton designPatterns/singleton.cpp)
 
 add_executable(factory designPatterns/factory.cpp)
