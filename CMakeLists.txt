@@ -26,3 +26,5 @@ add_executable(varidic_function_templates coreFeatures/variadic_function_templat
 add_executable(singleton designPatterns/singleton.cpp)
 
 add_executable(factory designPatterns/factory.cpp)
+
+add_executable(vector stl/vector.cpp)
