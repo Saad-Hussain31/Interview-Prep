@@ -19,6 +19,10 @@ add_executable(operator_overloading coreFeatures/operator_overloading.cpp)
 
 add_executable(templates coreFeatures/templates.cpp)
 
+add_executable(raii coreFeatures/raii.cpp)
+
+add_executable(varidic_function_templates coreFeatures/variadic_function_templates.cpp)
+
 add_executable(singleton designPatterns/singleton.cpp)
 
 add_executable(factory designPatterns/factory.cpp)
