@@ -14,6 +14,7 @@ template <typename T> T square(T input) { return input * input; }
 //     return input * input;
 // }
 
+
 // generics 3 multiple template params
 template <typename T1, typename T2> void foo(T1 input1, T2 input2) {
   std::cout << input1 << std::endl;
