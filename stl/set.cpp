@@ -2,6 +2,7 @@
 std::set<T> set1;
 
 1 associative container contains sorted set of unique objects of key T.
+1.2 multiset is an associative container contains sorted set of duplicate objects of key T.
 2 usually implemented using red black tree
 3 insertion, removal, search have log complexity(coz its a tree)
 4 if u wanna store UDTs in set then provide compare functions so that set can store them in sorted order
@@ -20,7 +21,6 @@ using namespace std;
 void using_set() {
     set<int> set = {1,2,5,4,3,1,2,3,4,5};
     //if wanna store data in desc order then set<int, std::greater> set; by default its std::less
-
     for(const auto& e : set ) {
         cout << e << endl;
     }

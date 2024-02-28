@@ -32,3 +32,5 @@ add_executable(array stl/array.cpp)
 add_executable(vector stl/vector.cpp)
 
 add_executable(set stl/set.cpp)
+
+add_executable(map stl/map.cpp)
