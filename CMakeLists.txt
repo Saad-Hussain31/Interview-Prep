@@ -27,4 +27,8 @@ add_executable(singleton designPatterns/singleton.cpp)
 
 add_executable(factory designPatterns/factory.cpp)
 
+add_executable(array stl/array.cpp)
+
 add_executable(vector stl/vector.cpp)
+
+add_executable(set stl/set.cpp)
