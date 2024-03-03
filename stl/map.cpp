@@ -18,7 +18,7 @@ void simple_map() {
     map<string, int> map1;// use std::greater<> for desc order
     map1["saad"] = 90238409;
     map1["hussain"] = 8237462;
-    map1.insert(std::make_pair("bot", 237984));
+    map1.insert(std::make_pair("bot", 237984)); //map1.insert({"bot", "238744"});
 
     for(auto &e : map1) {
         cout << e.first << " " << e.second << endl;

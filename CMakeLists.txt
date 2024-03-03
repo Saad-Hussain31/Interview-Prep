@@ -23,6 +23,8 @@ add_executable(raii coreFeatures/raii.cpp)
 
 add_executable(varidic_function_templates coreFeatures/variadic_function_templates.cpp)
 
+add_executable(lambdas coreFeatures/lambdas.cpp)
+
 add_executable(singleton designPatterns/singleton.cpp)
 
 add_executable(factory designPatterns/factory.cpp)
