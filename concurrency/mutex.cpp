@@ -5,10 +5,12 @@
 
 
 static int shared_value = 0;
-
+std::mutex lk;
 
 void shared_value_incr() {
+    lk.lock();
     shared_value = shared_value + 1;
+    lk.unlock();
 }
 
 int main() {
