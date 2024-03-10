@@ -97,7 +97,7 @@ int main() {
     cout << "Date not found in the vector." << endl;
   }
 
-  // Check if both first and last are valid iterators within the range of vec
+  // Check if first and last are valid iterators within the range of vec (3)
   if (first != vec.end() && last != vec.end()) {
     // copy if both first and last are valid
     copy(first, last, ostream_iterator<Date>(cout, "\n"));
@@ -106,10 +106,10 @@ int main() {
     cout << "One or both of the dates are not found in the vector." << endl;
   }
 
-  vec.insert(--vec.end(), TodaysDate());
+  vec.insert(--vec.end(), TodaysDate()); //(1)
 
   // Reacquire iterators after the insert operation coz older ones maybe
-  // invalidated due to vector reallocation
+  // invalidated due to vector reallocation (2)
   first = vec.begin();
   last = vec.end();
 

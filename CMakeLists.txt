@@ -39,4 +39,6 @@ add_executable(map stl/map.cpp)
 
 add_executable(iterator exceptional_cpp/iterator.cpp)
 
+add_executable(ci_string exceptional_cpp/ci_string.cpp)
+
 
