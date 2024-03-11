@@ -41,4 +41,8 @@ add_executable(iterator exceptional_cpp/iterator.cpp)
 
 add_executable(ci_string exceptional_cpp/ci_string.cpp)
 
+add_executable(reusable_generic_containers exceptional_cpp/reusable_generic_containers.cpp)
+
+
+
 
