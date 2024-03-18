@@ -43,6 +43,7 @@ add_executable(ci_string exceptional_cpp/ci_string.cpp)
 
 add_executable(reusable_generic_containers exceptional_cpp/reusable_generic_containers.cpp)
 
+add_executable(temporary_objects exceptional_cpp/temporary_objects.cpp)
 
 
 

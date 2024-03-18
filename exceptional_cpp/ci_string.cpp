@@ -17,6 +17,8 @@ useful to have it as a characteristic of the comparison operation.
 #include <cassert>
 #include <cstring>
 #include <iostream>
+#include <string>
+
 
 using namespace std;
 
