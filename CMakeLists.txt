@@ -45,5 +45,6 @@ add_executable(reusable_generic_containers exceptional_cpp/reusable_generic_cont
 
 add_executable(temporary_objects exceptional_cpp/temporary_objects.cpp)
 
+add_executable(two_sum leetcode/hashing/two_sum.cpp)
 
 
