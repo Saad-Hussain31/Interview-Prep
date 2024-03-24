@@ -15,6 +15,9 @@ public:
   ~Stack();
   Stack(const Stack<T> &other);
   Stack &operator=(const Stack<T> &other);
+  size_t Count() const;
+  void Push(const T &);
+  T Pop(); // if empty, throws exception
 
 public:
   T *v_;         // ptr to a memory area big
@@ -51,17 +54,32 @@ template <class T> Stack<T>::~Stack() {
 
 template <class T>
 Stack<T>::Stack(const Stack<T> &other)
-    : v_(NewCopy(other.v_, other.vsize_, other.vused_)), vsize_(other.vsize_),
+    : v_(NewCopy(other.v_, other.vsize_, other.vsize_)), vsize_(other.vsize_),
       vused_(other.vused_) {}
 
 template <class T> Stack<T> &Stack<T>::operator=(const Stack<T> &other) {
-  if (this != other) { // ensures safety and independence of the program's
-                       // state.
-    T *new_v = NewCopy(other.v_, other.vsize_, other.vused_);
+  if (this != &other) { // ensures safety and independence of the program's
+                        // state.
+    T *new_v = NewCopy(other.v_, other.vsize_, other.vsize_);
     delete v_;
     v_ = new_v;
     vsize_ = other.vsize_;
     vsize_ = other.vused_;
   }
   return *this;
+}
+
+template <class T> void Stack<T>::Push(const T &t) {}
+
+template <class T> T Stack<T>::Pop() {}
+
+template <class T> size_t Stack<T>::Count() const { return vused_; }
+
+int main() {
+
+  Stack<int> stk1;
+  Stack<int> stk2 = stk1;
+
+  Stack<int> stk3;
+  stk3 = stk1;
 }
