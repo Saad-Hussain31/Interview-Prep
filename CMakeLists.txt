@@ -45,12 +45,15 @@ add_executable(reusable_generic_containers exceptional_cpp/reusable_generic_cont
 
 add_executable(temporary_objects exceptional_cpp/temporary_objects.cpp)
 
-add_executable(exp_safety1 exceptional_cpp/exp_safety1.cpp)
+#add_executable(exp_safety1 exceptional_cpp/exp_safety1.cpp)
 
 add_executable(two_sum leetcode/hashing/two_sum.cpp)
 
 add_executable(top_k_elems leetcode/hashing/top_k_elems.cpp)
 
-add_executable(ProdArrayExceptSelf leetcode/hashing/ProdArrayExceptSelf.cpp)
+add_executable(ProdArrayExceptSelf leetcode/arrays/ProdArrayExceptSelf.cpp)
 
-add_executable(EncodeDecodeString.cpp leetcode/hashing/EncodeDecodeString.cpp)
+add_executable(EncodeDecodeString leetcode/arrays/EncodeDecodeString.cpp)
+
+add_executable(LongConsecSeq leetcode/arrays/LongConsecSeq.cpp)
+
