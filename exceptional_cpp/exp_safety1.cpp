@@ -27,13 +27,11 @@ public:
 
 template <class T> T *NewCopy(T *src, size_t src_size, size_t dest_size) {
   assert(dest_size >= src_size);
-
   // operator=() must guarantee that if it does throw,
   // then the assigned-to T object must be destructible.
   T *dest = new T[dest_size];
-
   try {
-    std::copy(src, src + src_size, dest);
+    std::copy(src, src + src_size, dest_size);
   } catch (...) {
     delete[] dest;
     throw;
@@ -60,16 +58,26 @@ Stack<T>::Stack(const Stack<T> &other)
 template <class T> Stack<T> &Stack<T>::operator=(const Stack<T> &other) {
   if (this != &other) { // ensures safety and independence of the program's
                         // state.
-    T *new_v = NewCopy(other.v_, other.vsize_, other.vsize_);
+    T *v_new_ = NewCopy(other.v_, other.vsize_, other.vsize_);
     delete v_;
-    v_ = new_v;
+    v_ = v_new_;
     vsize_ = other.vsize_;
-    vsize_ = other.vused_;
+    vused_ = other.vused_;
   }
   return *this;
 }
 
-template <class T> void Stack<T>::Push(const T &t) {}
+template <class T> void Stack<T>::Push(const T &t) {
+  if (vsize_ == vused_) {
+    size_t vsize_new_ = vsize_ * 2 + 1;
+    T *v_new_ = NewCopy(v_, vsize_, vsize_new_);
+    delete[] v_;
+    v_ = v_new_;
+    vsize_ = vsize_new_;
+  }
+  v_[vused_] = t;
+  ++vused_;
+}
 
 template <class T> T Stack<T>::Pop() {}
 
