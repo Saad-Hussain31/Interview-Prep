@@ -79,7 +79,15 @@ template <class T> void Stack<T>::Push(const T &t) {
   ++vused_;
 }
 
-template <class T> T Stack<T>::Pop() {}
+template <class T> T Stack<T>::Pop() {
+  if (vused_ == 0) {
+    throw "stack is empty!";
+  } else {
+    T result = v_[vused_ - 1];
+    --vused_;
+    return result;
+  }
+}
 
 template <class T> size_t Stack<T>::Count() const { return vused_; }
 
