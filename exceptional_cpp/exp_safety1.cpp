@@ -17,7 +17,7 @@ public:
   Stack &operator=(const Stack<T> &other);
   size_t Count() const;
   void Push(const T &);
-  T Pop(); // if empty, throws exception
+  T Pop(T &result); // if empty, throws exception
 
 public:
   T *v_;         // ptr to a memory area big
@@ -79,13 +79,12 @@ template <class T> void Stack<T>::Push(const T &t) {
   ++vused_;
 }
 
-template <class T> T Stack<T>::Pop() {
+template <class T> T Stack<T>::Pop(T &result) {
   if (vused_ == 0) {
     throw "stack is empty!";
   } else {
-    T result = v_[vused_ - 1];
+    result = v_[vused_ - 1];
     --vused_;
-    return result;
   }
 }
 
