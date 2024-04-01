@@ -26,13 +26,13 @@ public:
   size_t vused_; // # of T's actually in use
 };
 
-template <class T> T *NewCopy(T *src, size_t src_size, size_t dest_size) {
+template <class T> T *NewCopy(const T *src, size_t src_size, size_t dest_size) {
   assert(dest_size >= src_size);
   // operator=() must guarantee that if it does throw,
   // then the assigned-to T object must be destructible.
   T *dest = new T[dest_size];
   try {
-    std::copy(src, src + src_size, dest_size);
+    std::copy(src, src + src_size, dest);
   } catch (...) {
     delete[] dest;
     throw;
@@ -100,9 +100,36 @@ template <class T> size_t Stack<T>::Count() const { return vused_; }
 
 int main() {
 
-  Stack<int> stk1;
-  Stack<int> stk2 = stk1;
+  // Stack<int> stk1;
+  // Stack<int> stk2 = stk1;
 
+  // Stack<int> stk3;
+  // stk3 = stk1;
+
+  Stack<int> stk1;
+
+  // Push some elements onto stk1
+  stk1.Push(10);
+  stk1.Push(20);
+  stk1.Push(30);
+
+  // Access and print the top element of stk1
+  std::cout << "Top element of stk1: " << stk1.Top() << std::endl;
+
+  // Pop elements from stk1
+  stk1.Pop();
+  stk1.Pop();
+
+  // Print the number of elements in stk1
+  std::cout << "Number of elements in stk1: " << stk1.Count() << std::endl;
+
+  // Create a copy of stk1 using the copy constructor
+  Stack<int> stk2(stk1);
+
+  // Create a stack object stk3
   Stack<int> stk3;
+
+  // Assign stk1 to stk3 using the copy assignment operator
   stk3 = stk1;
+  cout << "Top is " << stk3.Top() << endl;
 }
