@@ -98,8 +98,51 @@ template <class T> T &Stack<T>::Top() {
 
 template <class T> size_t Stack<T>::Count() const { return vused_; }
 
-int main() {
+template <class T> class StackImpl {
+public:
+  StackImpl(size_t size = 0);
+  ~StackImpl();
+  void Swap(StackImpl &other) throw();
+  T *v_;         // ptr to a memory area big
+  size_t vsize_; // enough for 'vsize_' T's
+  size_t vused_; // # of T's actually in use
+private:
+  // private and undefined: no copying allowed
+  StackImpl(const StackImpl &);
+  StackImpl &operator=(const StackImpl &);
+};
 
+template <class T>
+StackImpl<T>::StackImpl(size_t size)
+    : v_(static_cast<T *>(size == 0 ? 0 : operator new(sizeof(T) * size))),
+      vsize_(size), vused_(0) {}
+
+// construct() constructs a new object in
+// a given location using an initial value
+//
+template <class T1, class T2> void construct(T1 *p, const T2 &value) {
+  new (p) T1(value); // placement new
+}
+
+// destroy() destroys an object or a range 
+// of objects
+//
+template <class FwdIter> void destroy(FwdIter first, FwdIter last) {
+  while (first != last) {
+    destroy(&*first);
+    ++first;
+  }
+}
+
+template <class T> void destroy(T *p) { p->~T(); }
+
+template <class T> void swap(T &a, T &b) {
+  T temp(a);
+  a = b;
+  b = temp;
+}
+
+int main() {
   // Stack<int> stk1;
   // Stack<int> stk2 = stk1;
 
