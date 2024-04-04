@@ -25,6 +25,8 @@ add_executable(varidic_function_templates coreFeatures/variadic_function_templat
 
 add_executable(lambdas coreFeatures/lambdas.cpp)
 
+add_executable(Static coreFeatures/Static.cpp)
+
 add_executable(singleton designPatterns/singleton.cpp)
 
 add_executable(factory designPatterns/factory.cpp)
@@ -46,8 +48,6 @@ add_executable(reusable_generic_containers exceptional_cpp/reusable_generic_cont
 add_executable(temporary_objects exceptional_cpp/temporary_objects.cpp)
 
 add_executable(Stack exceptional_cpp/ExceptionSafetyTechniques/Stack.cpp)
-
-add_executable(StackImpl exceptional_cpp/ExceptionSafetyTechniques/StackImpl.cpp)
 
 add_executable(two_sum leetcode/hashing/two_sum.cpp)
 
