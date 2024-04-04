@@ -4,9 +4,10 @@ static outside class means that the
 scope is limited to the transalation unit/binary in which it is created. its
 kinda like declaring a member private in the class. the linker doesnt see it.
 
-
 static in class means for all instances of a class, there will be only 1
-instance of the var thats declared static.
+instance of the var thats declared static. before cpp17 you had to init them
+outside class bcz they were shared for all insts then who will create mem for
+them? thats why you create mem outside class;
 
 Static member functions call only access static vars. cant access the nonstatic
 ones because all nonstatic member func takes instance of class as hidden
@@ -14,8 +15,10 @@ param(self in python). a static member function does not get that hidden instan
 as param. since it doesnt have the instance, it cant call/access the member vars
 of that class.
 
-----------------------------
-Static for Classes and Structs:
+Local static means the lifetime will be till when the program ends but the scope
+will be limited to function.
+
+static variables are not thread safe.
 
 call with :: operator. no need to create instance.
 
