@@ -16,9 +16,11 @@ as param. since it doesnt have the instance, it cant call/access the member vars
 of that class.
 
 Local static means the lifetime will be till when the program ends but the scope
-will be limited to function.
+will be limited to function. cant use outside the function.
 
 static variables are not thread safe.
+
+static in function & class  templates is not common, its different for each function & class. 
 
 call with :: operator. no need to create instance.
 
