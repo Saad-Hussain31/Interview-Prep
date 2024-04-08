@@ -13,6 +13,9 @@ add_executable(test coreFeatures/test.cpp)
 
 add_executable(copies coreFeatures/copies.cpp)
 
+add_executable(condition_variable concurrency/condition_variable.cpp)
+target_link_libraries(condition_variable pthread)
+
 add_executable(avoiding_copies coreFeatures/avoiding_copies.cpp)
 
 add_executable(operator_overloading coreFeatures/operator_overloading.cpp)
