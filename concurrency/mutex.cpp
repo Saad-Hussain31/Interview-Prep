@@ -17,7 +17,7 @@ void shared_value_incr() {
 std::mutex mu;
 void print_msg(std::string msg, int id) {
     mu.lock();
-    std::cout << msg << id << std::endl;
+    std::cout << msg << id << std::endl; //if this throws then mu wont get unlocked. so use lock_guard
     mu.unlock();
 }
 
