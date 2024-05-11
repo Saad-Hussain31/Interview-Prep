@@ -13,16 +13,40 @@ void shared_value_incr() {
     lk.unlock();
 }
 
+
+std::mutex mu;
+void print_msg(std::string msg, int id) {
+    mu.lock();
+    std::cout << msg << id << std::endl;
+    mu.unlock();
+}
+
+void function_1() {
+    for(int i=0; i>-100; --i) {
+        print_msg(std::string("From t1: "), i);
+    }
+}
+
 int main() {
 
-    std::vector<std::thread> thds;
+    // std::vector<std::thread> thds;
+    // for(int i=0; i<100; ++i) {
+    //     thds.push_back(std::thread(shared_value_incr));
+    // }
+
+    // for(int i =0; i<100; ++i) {
+    //     thds[i].join();
+    // }
+
+    // std::cout << "Shared value: " << shared_value << std::endl;
+
+    std::thread t1(function_1);
     for(int i=0; i<100; ++i) {
-        thds.push_back(std::thread(shared_value_incr));
+        // std::cout << "From main: " << i << std::endl; 
+        print_msg(std::string("From main: "), i);
     }
 
-    for(int i =0; i<100; ++i) {
-        thds[i].join();
-    }
+    t1.join();
 
-    std::cout << "Shared value: " << shared_value << std::endl;
+    return 0;
 }

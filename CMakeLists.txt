@@ -13,6 +13,8 @@ add_executable(test coreFeatures/test.cpp)
 
 add_executable(copies coreFeatures/copies.cpp)
 
+add_executable(mutex concurrency/mutex.cpp)
+
 add_executable(condition_variable concurrency/condition_variable.cpp)
 target_link_libraries(condition_variable pthread)
 
@@ -41,6 +43,8 @@ add_executable(vector stl/vector.cpp)
 add_executable(set stl/set.cpp)
 
 add_executable(map stl/map.cpp)
+
+add_executable(minmax stl/minmax.cpp)
 
 add_executable(iterator exceptional_cpp/iterator.cpp)
 
