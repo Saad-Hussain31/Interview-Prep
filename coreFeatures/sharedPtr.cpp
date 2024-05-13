@@ -65,11 +65,23 @@ public:
 };
 
 void foo() {
-  Dog *p = new Dog("Gunner");
-  //...
-  delete p;
-  //..
-  p->bark(); // p is a dangling ptr -- undefined behavior
-}
+//   Dog *p = new Dog("Gunner");
+//   //...
+//   delete p;
+//   //..
+//   p->bark(); // p is a dangling ptr -- undefined behavior
 
-int main() {}
+  shared_ptr<Dog> p1(
+      new Dog("Gunner")); // keep tracks of how many shared ptrs are pointing to
+                          // the obj. currently, count = 1
+  {
+    shared_ptr<Dog> p2 = p1; //p2 is also pointing to Gunner. count =2
+    p2->bark();
+  }
+  //count = 1
+  p1->bark();
+} // count = 0
+
+int main() {
+    foo();
+}
