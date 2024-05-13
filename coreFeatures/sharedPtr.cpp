@@ -71,9 +71,15 @@ void foo() {
   //   //..
   //   p->bark(); // p is a dangling ptr -- undefined behavior
 
-  shared_ptr<Dog> p1(
-      new Dog("Gunner")); // keep tracks of how many shared ptrs are pointing to
-                          // the obj. currently, count = 1
+  shared_ptr<Dog> p1(new Dog(
+      "Gunner")); // keep tracks of how many shared ptrs are pointing to
+                  // the obj. currently, count = 1.
+                  // Here 2 things happend, 
+                  // a.Gunner is created. b. p1 is created with dog Gunner.
+                  // make_shared combines these 2 hence its faster. if step a
+                  // succeeds and b fails due to exception, then Gunner is not
+                  // being managed by shared ptr and hence its mem will be
+                  // leaked. using make_shared makes it safer
   {
     shared_ptr<Dog> p2 = p1; // p2 is also pointing to Gunner. count =2
     p2->bark();
@@ -92,4 +98,6 @@ int main() {
                          // will be destroyed again. undef behav.
   // so key about using shared ptr is that obj should be assinged to smart ptr,
   // as soon as it is created. raw ptrs shoudlnt be used again.
+
+  shared_ptr<Dog> p3 = make_shared<Dog>("Tank"); // faster and safer
 }
