@@ -65,23 +65,31 @@ public:
 };
 
 void foo() {
-//   Dog *p = new Dog("Gunner");
-//   //...
-//   delete p;
-//   //..
-//   p->bark(); // p is a dangling ptr -- undefined behavior
+  //   Dog *p = new Dog("Gunner");
+  //   //...
+  //   delete p;
+  //   //..
+  //   p->bark(); // p is a dangling ptr -- undefined behavior
 
   shared_ptr<Dog> p1(
       new Dog("Gunner")); // keep tracks of how many shared ptrs are pointing to
                           // the obj. currently, count = 1
   {
-    shared_ptr<Dog> p2 = p1; //p2 is also pointing to Gunner. count =2
+    shared_ptr<Dog> p2 = p1; // p2 is also pointing to Gunner. count =2
     p2->bark();
   }
-  //count = 1
+  // count = 1
   p1->bark();
 } // count = 0
 
 int main() {
-    foo();
+  foo();
+
+  Dog *d = new Dog("Tank");
+  shared_ptr<Dog> p(
+      d); // p.use_count == 1  when p goes outta scope Tank will be destroyed
+  shared_ptr<Dog> p2(d); // p2.use_count == 1 when p2 goes outta scope, Tank
+                         // will be destroyed again. undef behav.
+  // so key about using shared ptr is that obj should be assinged to smart ptr,
+  // as soon as it is created. raw ptrs shoudlnt be used again.
 }
