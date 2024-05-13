@@ -120,6 +120,15 @@ void using_custom_deleter() {
     cout << "Custom deleting. " << endl;
     delete p;
   });
+
+  // case when custom deleter is very important to have
+  shared_ptr<Dog> p3(
+      new Dog[3]); // returns a dogs ptr which points to dog[0]. p3 is managing
+                   // dog[0] only and when p3 goes outta scope p[1] and p[2]
+                   // will have memeory leak.
+  shared_ptr<Dog> p4(new Dog[3], [](Dog *p) {
+    delete[] p; // all 3 dogs will be delete when p4 goes outta scope.
+  });
 }
 
 int main() {
