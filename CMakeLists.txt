@@ -9,11 +9,15 @@ add_executable(sharedPtr coreFeatures/sharedPtr.cpp)
 
 add_executable(uniquePtr coreFeatures/uniquePtr.cpp)
 
+add_executable(weakptr coreFeatures/weakptr.cpp)
+
 add_executable(test coreFeatures/test.cpp)
 
 add_executable(copies coreFeatures/copies.cpp)
 
 add_executable(mutex concurrency/mutex.cpp)
+
+add_executable(thread concurrency/thread.cpp)
 
 add_executable(condition_variable concurrency/condition_variable.cpp)
 target_link_libraries(condition_variable pthread)

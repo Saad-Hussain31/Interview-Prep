@@ -21,6 +21,10 @@ thd management can be done via try catch block.
 
 #include <iostream>
 #include <thread>
+#include <vector>
+using namespace std;
+/*
+// thread 1:mike shah
 
 void test(int x) {
   std::cout << "Hello from thd\n";
@@ -37,5 +41,24 @@ int main() {
 
   std::thread thd2([]() { std::cout << "lmao" << std::endl; });
   thd2.join();
+  return 0;
+}
+*/
+
+int main() {
+  auto lambda = []() {
+    cout << "Hello from thread " << this_thread::get_id() << endl;
+  };
+
+  vector<thread> thds;
+  for (int i = 0; i < 10; ++i) {
+    thds.push_back(std::thread(lambda));
+    // thds[i].join(); 
+  }
+
+  for (int i = 0; i < 10; ++i) {
+    thds[i].join();
+  }
+  cout << "Hello from main thd\n";
   return 0;
 }
