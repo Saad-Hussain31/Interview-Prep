@@ -19,6 +19,8 @@ add_executable(mutex concurrency/mutex.cpp)
 
 add_executable(thread concurrency/thread.cpp)
 
+add_executable(deadlock concurrency/deadlock.cpp)
+
 add_executable(condition_variable concurrency/condition_variable.cpp)
 target_link_libraries(condition_variable pthread)
 
