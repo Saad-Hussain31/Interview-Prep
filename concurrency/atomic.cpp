@@ -8,7 +8,10 @@ using namespace std;
 
 static std::atomic<int> sharedValue{0};
 
-void sharedValueIncr() { sharedValue++; }
+void sharedValueIncr() {
+  sharedValue++; // key about atomic that you can use == or += but not +1 becz
+                 // its not overloaded
+}
 
 int main() {
   vector<thread> thds;
