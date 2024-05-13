@@ -21,6 +21,8 @@ add_executable(thread concurrency/thread.cpp)
 
 add_executable(deadlock concurrency/deadlock.cpp)
 
+add_executable(atomic concurrency/atomic.cpp)
+
 add_executable(condition_variable concurrency/condition_variable.cpp)
 target_link_libraries(condition_variable pthread)
 
