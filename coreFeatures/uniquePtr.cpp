@@ -1,5 +1,9 @@
 // raw poiinters allow sharing. uniq ptr are scoped pointers means itll delete
 // itself.
+
+// unique ptrs dont need to have custom deleters for deleting arrays coz arrays
+// are partially initialized fopr them
+
 #include <iostream>
 #include <memory>
 #include <string>
@@ -112,10 +116,19 @@ void test_transfer_ownership() {
   unique_ptr<Dog> p1(new Dog("Gunner"));
   transfer_ownership(move(p1));
   // Question: where is Gunner destroyed? inside test func or inside
-  // transfer_ownership? its destoyed inside transfer_ownership func becuase we have moved it there
-  if(!p1) {
-	cout << "p1 is empty\n";
+  // transfer_ownership? its destoyed inside transfer_ownership func becuase we
+  // have moved it there
+  if (!p1) {
+    cout << "p1 is empty\n";
   }
 }
 
-int main() { test_transfer_ownership(); }
+unique_ptr<Dog> returning_from_func() {
+  unique_ptr<Dog> p(new Dog("Smokey"));
+  return p; // move is auto used here
+}
+
+int main() {
+  // test_transfer_ownership();
+  unique_ptr<Dog> p2 = returning_from_func();
+}
