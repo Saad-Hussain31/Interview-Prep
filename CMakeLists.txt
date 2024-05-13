@@ -17,6 +17,8 @@ add_executable(copies coreFeatures/copies.cpp)
 
 add_executable(mutex concurrency/mutex.cpp)
 
+add_executable(thdsafe_static concurrency/thdsafe_static.cpp)
+
 add_executable(thread concurrency/thread.cpp)
 
 add_executable(deadlock concurrency/deadlock.cpp)
