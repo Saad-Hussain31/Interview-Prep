@@ -40,6 +40,7 @@ void sharedValueIncrUsingRAII() {
 int main() {
   vector<thread> thds;
   for (int i = 0; i < 100; ++i) {
+    // thds.push_back(thread(sharedValueIncr));
     thds.push_back(thread(sharedValueIncrUsingRAII));
   }
 
