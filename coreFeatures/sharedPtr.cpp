@@ -74,7 +74,7 @@ void foo() {
   shared_ptr<Dog> p1(new Dog(
       "Gunner")); // keep tracks of how many shared ptrs are pointing to
                   // the obj. currently, count = 1.
-                  // Here 2 things happend, 
+                  // Here 2 things happend,
                   // a.Gunner is created. b. p1 is created with dog Gunner.
                   // make_shared combines these 2 hence its faster. if step a
                   // succeeds and b fails due to exception, then Gunner is not
@@ -88,16 +88,44 @@ void foo() {
   p1->bark();
 } // count = 0
 
-int main() {
-  foo();
-
+void using_shared_with_raw() { // problematic!
   Dog *d = new Dog("Tank");
   shared_ptr<Dog> p(
       d); // p.use_count == 1  when p goes outta scope Tank will be destroyed
   shared_ptr<Dog> p2(d); // p2.use_count == 1 when p2 goes outta scope, Tank
                          // will be destroyed again. undef behav.
   // so key about using shared ptr is that obj should be assinged to smart ptr,
-  // as soon as it is created. raw ptrs shoudlnt be used again.
+  // as soon as it is created. raw ptrs shoudlnt be used again. achieve this by
+  // using make_shared()
+}
 
+void using_make_shared() {
   shared_ptr<Dog> p3 = make_shared<Dog>("Tank"); // faster and safer
+}
+
+void bar() {
+  shared_ptr<Dog> p1 = make_shared<Dog>("Gunner!");
+  shared_ptr<Dog> p2 = make_shared<Dog>("Tank!");
+  p1 = p2;      // Gunner is deleted.coz theres no shared ptr pointing to Gunner
+                // anymore
+  p1 = nullptr; // Gunner also deleted
+  p1.reset();   // Gunner also deleted
+}
+
+void using_custom_deleter() {
+  shared_ptr<Dog> p1 =
+      make_shared<Dog>("Gunner!"); // using default deleter operator delete.
+  // if you want to use custom delete then use ctor of shared ptr to create it.
+  shared_ptr<Dog> p2 = shared_ptr<Dog>(new Dog("Tank"), [](Dog *p) {
+    cout << "Custom deleting. " << endl;
+    delete p;
+  });
+}
+
+int main() {
+  foo();
+  //   using_shared_with_raw();
+  using_make_shared();
+  bar();
+  using_custom_deleter();
 }
